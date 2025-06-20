@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frasi vocali</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fefefe;
+      text-align: center;
+      padding: 20px;
+    }
+    #status {
+      font-size: 1.5em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">Tocca per iniziare</div>
+
+  <script>
+    const audioFiles = [
+      "audio1.mp3",
+      "audio2.mp3",
+      "audio3.mp3"
+    ];
+
+    let current = 0;
+    const status = document.getElementById("status");
+
+    function playAudio() {
+      const file = audioFiles[current % audioFiles.length];
+      const audio = new Audio(file);
+      audio.play();
+      status.textContent = `Sta riproducendo: ${file}`;
+      current++;
+    }
+
+    status.addEventListener("click", () => {
+      playAudio(); // prima volta
+      setInterval(playAudio, 60000); // ogni 60 secondi
+    });
+  </script>
+</body>
+</html>
